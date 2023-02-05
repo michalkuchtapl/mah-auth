@@ -1,0 +1,30 @@
+{
+  "name": "kuchta/laravel-mah-auth",
+  "description": "Package that implements authentication using MAH (Main Accounts Hub)",
+  "type": "library",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Michał Kuchta",
+      "email": "michal.kuchta@outlook.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "guzzlehttp/guzzle": "^7.2",
+    "illuminate/support": "^9.0",
+    "laravel/framework": "^9.19"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kuchta\\Laravel\\MahAuth\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Kuchta\\Laravel\\MahAuth\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}
