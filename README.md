@@ -22,7 +22,7 @@ composer require kuchta/laravel-mah-auth
 This package uses cookies to store auth token for the user, that token is visible to all other app in that domain, so when user logs into one app it will be logged in everywhere.
 Laravel encrypts cookies by default, so you also need to exclude our cookie from encryption by adding
 ```
-Kuchta\Laravel\MahAuth\Adapters\Adapter::COOKIE_NAME
+\Kuchta\Laravel\MahAuth\Adapters\Adapter::COOKIE_NAME
 ```
 to `EncryptCookie` middleware of your application.
 ## Usage

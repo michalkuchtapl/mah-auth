@@ -21,12 +21,13 @@ class ServiceProvider extends AuthServiceProvider
         $this->app->singleton(Adapter::class, fn () => new Adapter);
 
         $this->registerPolicies();
-        $this->registerGuard();
+        $this->updateAuthGuardsConfig();
     }
 
     public function register()
     {
         $this->mergeConfigFrom($this->rootDir.'/config/mah.php', 'mah');
+        $this->registerGuard();
     }
 
     private function registerGuard()
