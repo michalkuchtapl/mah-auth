@@ -3,19 +3,19 @@
 namespace Kuchta\Laravel\MahAuth\DataTransferObjects;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\Data;
 
-class User extends Model implements Authenticatable
+class User extends Data implements Authenticatable
 {
-    public ?int $id;
+    public ?int $id = null;
 
     public string $name;
 
     public string $email;
 
-    public ?string $password;
+    public ?string $password = null;
 
-    public ?string $passwordConfirmation;
+    public ?string $passwordConfirmation = null;
 
     public function toApi(): array
     {
@@ -32,9 +32,9 @@ class User extends Model implements Authenticatable
         return $data;
     }
 
-    public static function fromApi(\stdClass $payload): static
+    public static function fromApi(\stdClass $payload): self
     {
-        $user = new static();
+        $user = new self();
         $user->id = $payload->id;
         $user->name = $payload->name;
         $user->email = $payload->email;
