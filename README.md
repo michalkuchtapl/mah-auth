@@ -4,7 +4,7 @@
 This package provide implementation of user's authentication using [MAH](https://github.com/michalkuchtapl/main-accounts-hub).
 
 To install that package you need to add repository information to composer.json file:
-```json
+```
 {
     ...
     "repositories": [
