@@ -1,5 +1,4 @@
 # Main Accounts Hub Auth - MAH Auth
-<hr>
 
 This package provide implementation of user's authentication using [MAH](https://github.com/michalkuchtapl/main-accounts-hub).
 
@@ -23,7 +22,6 @@ composer require kuchta/laravel-mah-auth
 ```
 
 ## Usage
-<hr>
 To use that guard you can use middleware **auth:mah**, or set **mah** as your default auth guard inside `config/auth.php` config file.
 
 Second thing to do is to set two env variables:
