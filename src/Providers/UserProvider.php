@@ -2,10 +2,9 @@
 
 namespace Kuchta\Laravel\MahAuth\Providers;
 
-
-use Kuchta\Laravel\MahAuth\Adapters\Adapter;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider as BaseUserProvider;
+use Kuchta\Laravel\MahAuth\Adapters\Adapter;
 
 class UserProvider implements BaseUserProvider
 {

@@ -4,7 +4,6 @@ namespace Kuchta\Laravel\MahAuth\Extensions;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Validation\ValidationException;
 
 class GuzzleClient
@@ -36,7 +35,7 @@ class GuzzleClient
     private function request(string $method, string $uri, ?array $data): \stdClass
     {
         $options = [
-            $method === 'get' ? 'query' : 'json' => $data
+            $method === 'get' ? 'query' : 'json' => $data,
         ];
 
         try {
@@ -50,17 +49,15 @@ class GuzzleClient
 
     private function handleException(RequestException $exception)
     {
-        if ($exception->getCode() === 422)
+        if ($exception->getCode() === 422) {
             $this->handleValidationErrors($exception);
-
-        else if ($exception->getCode() === 590)
+        } elseif ($exception->getCode() === 590) {
             $this->handleUnauthorized($exception);
-
-        else if ($exception->getCode() === 401)
+        } elseif ($exception->getCode() === 401) {
             $this->handleUnauthenticated($exception);
-
-        else
+        } else {
             throw $exception;
+        }
     }
 
     private function handleValidationErrors(RequestException $exception)
@@ -69,8 +66,9 @@ class GuzzleClient
 
         $errors = data_get($response, 'errors', []);
 
-        if (empty($errors))
-            throw new \Exception("Undefined error");
+        if (empty($errors)) {
+            throw new \Exception('Undefined error');
+        }
 
         throw ValidationException::withMessages($errors);
     }

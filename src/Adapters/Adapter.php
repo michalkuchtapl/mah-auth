@@ -2,11 +2,11 @@
 
 namespace Kuchta\Laravel\MahAuth\Adapters;
 
-use Kuchta\Laravel\MahAuth\DataTransferObjects\User;
-use Kuchta\Laravel\MahAuth\Extensions\GuzzleClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Cookie;
+use Kuchta\Laravel\MahAuth\DataTransferObjects\User;
+use Kuchta\Laravel\MahAuth\Extensions\GuzzleClient;
 
 class Adapter
 {
@@ -17,14 +17,14 @@ class Adapter
     public function __construct()
     {
         $this->client = new GuzzleClient(new Client([
-            'base_uri' => trim(config('mah.api.uri'), '/') . '/',
+            'base_uri' => trim(config('mah.api.uri'), '/').'/',
             'headers' => [
-                'Authorization' => 'Bearer ' . config('mah.api.key'),
+                'Authorization' => 'Bearer '.config('mah.api.key'),
                 'origin' => url(config('app.url')),
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Mah-Locale' => config('app.locale')
-            ]
+                'Mah-Locale' => config('app.locale'),
+            ],
         ]));
     }
 
@@ -76,8 +76,9 @@ class Adapter
     {
         $token = Cookie::get(self::COOKIE_NAME);
 
-        if (empty($token))
+        if (empty($token)) {
             return null;
+        }
 
         try {
             $response = $this->client
@@ -88,6 +89,7 @@ class Adapter
             if ($exception->getCode() != '401') {
                 report($exception);
             }
+
             return null;
         }
 
@@ -99,7 +101,8 @@ class Adapter
         $host = parse_url(config('app.url'), PHP_URL_HOST);
         $parts = array_reverse(explode('.', $host));
 
-        $domain = $parts[1] . '.' . $parts[0];
+        $domain = $parts[1].'.'.$parts[0];
+
         return '.'.$domain;
     }
 

@@ -2,10 +2,10 @@
 
 namespace Kuchta\Laravel\MahAuth\Providers;
 
-use Kuchta\Laravel\MahAuth\Adapters\Adapter;
-use Kuchta\Laravel\MahAuth\Guards\Guard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Kuchta\Laravel\MahAuth\Adapters\Adapter;
+use Kuchta\Laravel\MahAuth\Guards\Guard;
 
 class ServiceProvider extends AuthServiceProvider
 {

@@ -2,10 +2,10 @@
 
 namespace Kuchta\Laravel\MahAuth\Guards;
 
-use Kuchta\Laravel\MahAuth\Providers\UserProvider;
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Kuchta\Laravel\MahAuth\Providers\UserProvider;
 
 class Guard implements StatefulGuard
 {
@@ -28,8 +28,9 @@ class Guard implements StatefulGuard
 
     public function user()
     {
-        if ($this->user)
+        if ($this->user) {
             return $this->user;
+        }
 
         return $this->user = $this->provider->retrieveByToken(null, null);
     }
@@ -44,6 +45,7 @@ class Guard implements StatefulGuard
     public function once(array $credentials = [])
     {
         $this->provider->retrieveByCredentials($credentials);
+
         return true;
     }
 

@@ -10,12 +10,14 @@ class User extends Model implements Authenticatable
     public ?int $id;
 
     public string $name;
+
     public string $email;
 
     public ?string $password;
+
     public ?string $passwordConfirmation;
 
-    public function toApi() : array
+    public function toApi(): array
     {
         $data = [
             'name' => $this->name,
@@ -36,6 +38,7 @@ class User extends Model implements Authenticatable
         $user->id = $payload->id;
         $user->name = $payload->name;
         $user->email = $payload->email;
+
         return $user;
     }
 
